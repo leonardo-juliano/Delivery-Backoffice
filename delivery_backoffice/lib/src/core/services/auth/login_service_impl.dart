@@ -1,5 +1,4 @@
 import '../../../repositories/auth/auth_repository.dart';
-import '../../exceptions/repository_exception.dart';
 import '../../global/constants.dart';
 import '../../storage/storage.dart';
 import './login_service.dart';
