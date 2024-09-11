@@ -16,9 +16,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
   Widget build(BuildContext context) {
     return BaseLayout(
       Scaffold(
-        appBar: AppBar(
-          title: const Text('Home Page'),
-        ),
         body: Column(
           children: [
             Padding(

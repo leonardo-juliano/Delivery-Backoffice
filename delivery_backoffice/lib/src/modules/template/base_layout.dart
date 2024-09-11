@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/ui/helpers/size_extensions.dart';
+import 'menu/menu_bar.dart' as menu;
 
 class BaseLayout extends StatelessWidget {
   const BaseLayout(this.body, {super.key});
@@ -27,9 +28,33 @@ class BaseLayout extends StatelessWidget {
               child: Container(
                 width: shortesSide * .13,
                 margin: const EdgeInsets.only(left: 60),
-                child: Image.asset('assets/images/logo.png'),),
+                child: Image.asset('assets/images/logo.png'),
+              ),
             ),
-            
+            Positioned.fill(
+              top: shortesSide * .13,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(20),
+                    right: Radius.circular(20),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const menu.MenuBar(),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20),
+                        color: Colors.grey[50]!,
+                        child: body,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
