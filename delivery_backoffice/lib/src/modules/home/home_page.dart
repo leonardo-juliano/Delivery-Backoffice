@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
+import '../template/base_layout.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,26 +14,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with Loader, Messages {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
-      body: Container(
-        child: Column(
+    return BaseLayout(
+      Scaffold(
+        appBar: AppBar(
+          title: const Text('Home Page'),
+        ),
+        body: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: TextFormField(
-                      decoration: const InputDecoration(label: Text('login')),
-                      validator: (String) => 'Erro',),
-                ),),
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: TextFormField(
+                  decoration: const InputDecoration(label: Text('login')),
+                  validator: (string) => 'Erro',
+                ),
+              ),
+            ),
             SizedBox(
               width: 200,
               height: 50,
-              child:
-                  ElevatedButton(onPressed: () {}, child: const Text('teste')),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('teste',
+                      style: TextStyle(color: Colors.white))),
             ),
           ],
         ),

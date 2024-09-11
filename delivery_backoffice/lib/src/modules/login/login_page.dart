@@ -1,3 +1,4 @@
+import 'login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -8,7 +9,6 @@ import '../../core/ui/helpers/messages.dart';
 import '../../core/ui/helpers/size_extensions.dart';
 import '../../core/ui/styles/colors_app.dart';
 import '../../core/ui/styles/text_styles.dart';
-import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,11 +36,11 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
           break;
         case LoginStateStatus.success:
           hideLoader();
-          Modular.to.navigate('/');
+          Modular.to.navigate('/home');
           break;
         case LoginStateStatus.error:
           hideLoader();
-          showError(controller.errorMessage ?? 'Erro'); 
+          showError(controller.errorMessage ?? 'Erro');
           break;
       }
     });
@@ -48,9 +48,17 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
 
   @override
   void dispose() {
-    emailEC.dispose();
+    emailEC.dispose(); 
     passwordEC.dispose();
+    statusReactionDisposer();
     super.dispose();
+  }
+
+  void _formSubmit() {
+    final formValid = formKey.currentState?.validate() ?? false;
+    if (formValid) {
+      controller.login(emailEC.text, passwordEC.text);
+    }
   }
 
   @override
@@ -105,26 +113,30 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text('login', style: context.textStyles.textTitle),
+                        child:
+                            Text('login', style: context.textStyles.textTitle),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
                       TextFormField(
-                        controller: emailEC,
-                        decoration: const InputDecoration(labelText: 'E-mail'),
-                        validator: Validatorless.multiple([
-                          Validatorless.required('Email Obrigatório'),
-                          Validatorless.email('Email inválido')
-                        ])
-                      ),
+                          onFieldSubmitted: (_) => _formSubmit(),
+                          controller: emailEC,
+                          decoration:
+                              const InputDecoration(labelText: 'E-mail'),
+                          validator: Validatorless.multiple([
+                            Validatorless.required('Email Obrigatório'),
+                            Validatorless.email('Email inválido')
+                          ])),
                       const SizedBox(
                         height: 30,
                       ),
                       TextFormField(
+                        onFieldSubmitted: (_) => _formSubmit(),
                         controller: passwordEC,
                         decoration: const InputDecoration(labelText: 'Senha'),
-                        validator: Validatorless.required('Password Obrigatório'),
+                        validator:
+                            Validatorless.required('Password Obrigatório'),
                       ),
                       const SizedBox(
                         height: 30,
@@ -133,12 +145,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () {
-                               final formValid = formKey.currentState?.validate() ?? false;
-                               if (formValid) {
-                                controller.login(emailEC.text, passwordEC.text);
-                               }
-                            },
+                            onPressed: _formSubmit,
                             child: const Text(
                               'Entrar',
                               style: TextStyle(color: Colors.white),

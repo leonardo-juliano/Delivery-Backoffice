@@ -15,23 +15,23 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AuthModel> login(String email, String password) async {
-    try{
-    final result = await _dio.unauth().post('/auth',
-    data: {
-          'email' : email,
-    'password' : password,
-    'admin' : true,
-    },);
-    return AuthModel.fromMap(result.data);
-    }on DioError catch(e, s){
-      if(e.response?.statusCode ==403){
+    try {
+      final result = await _dio.unauth().post(
+        '/auth',
+        data: {
+          'email': email,
+          'password': password,
+          'admin': true,
+        },
+      );
+      return AuthModel.fromMap(result.data);
+    } on DioError catch (e, s) {
+      if (e.response?.statusCode == 403) {
         log('Login ou senha invalidos', error: e, stackTrace: s);
         throw UnauthorizedException();
       }
       log('Error ao realizar login', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao realizar login');
     }
-
   }
-
 }

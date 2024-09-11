@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
     Modular.setInitialRoute('/login');
 
     return MaterialApp.router(
-      title: 'Application Name',
+      title: 'Delivery Backoffice',
       theme: ThemeConfig.theme,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
