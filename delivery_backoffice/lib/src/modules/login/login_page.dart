@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
 
   @override
   void dispose() {
-    emailEC.dispose(); 
+    emailEC.dispose();
     passwordEC.dispose();
     statusReactionDisposer();
     super.dispose();
@@ -127,13 +127,14 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                           validator: Validatorless.multiple([
                             Validatorless.required('Email Obrigatório'),
                             Validatorless.email('Email inválido')
-                          ])),
+                          ],),),
                       const SizedBox(
                         height: 30,
                       ),
                       TextFormField(
                         onFieldSubmitted: (_) => _formSubmit(),
                         controller: passwordEC,
+                        obscureText: true,
                         decoration: const InputDecoration(labelText: 'Senha'),
                         validator:
                             Validatorless.required('Password Obrigatório'),

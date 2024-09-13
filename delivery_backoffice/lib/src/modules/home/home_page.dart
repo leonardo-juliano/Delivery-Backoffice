@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
               child: ElevatedButton(
                   onPressed: () {},
                   child: const Text('teste',
-                      style: TextStyle(color: Colors.white))),
+                      style: TextStyle(color: Colors.white),),),
             ),
           ],
         ),

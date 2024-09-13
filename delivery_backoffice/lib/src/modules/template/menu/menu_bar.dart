@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'menu_button.dart';
 import 'menu_enum.dart';
 
 class MenuBar extends StatefulWidget {
@@ -10,6 +11,7 @@ class MenuBar extends StatefulWidget {
 }
 
 class _MenuBarState extends State<MenuBar> {
+  Menu? selectedMenu;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,12 +32,21 @@ class _MenuBarState extends State<MenuBar> {
             height: 10,
           ),
           ListView.builder(
-              shrinkWrap: true,
-              itemCount: Menu.values.length,
-              itemBuilder: (context, index) {
-                final menu = Menu.values[index];
-                return Text('Teste');
-              })
+            shrinkWrap: true,
+            itemCount: Menu.values.length,
+            itemBuilder: (context, index) {
+              final menu = Menu.values[index];
+              return MenuButton(
+                menu: menu,
+                menuSelected: selectedMenu,
+                onPressed: (Menu value) {
+                  setState(() {
+                    selectedMenu = menu;
+                  });
+                },
+              );
+            },
+          ),
         ],
       ),
     );
