@@ -4,9 +4,10 @@ import '../../core/ui/helpers/size_extensions.dart';
 import 'menu/menu_bar.dart' as menu;
 
 class BaseLayout extends StatelessWidget {
-  const BaseLayout(this.body, {super.key});
 
   final Widget body;
+
+  const BaseLayout({required this.body, super.key});
 
   @override
   Widget build(BuildContext context) {

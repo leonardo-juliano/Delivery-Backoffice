@@ -14,30 +14,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with Loader, Messages {
   @override
   Widget build(BuildContext context) {
-    return BaseLayout(
-      Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: TextFormField(
-                  decoration: const InputDecoration(label: Text('login')),
-                  validator: (string) => 'Erro',
-                ),
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: TextFormField(
+                decoration: const InputDecoration(label: Text('login')),
+                validator: (string) => 'Erro',
               ),
             ),
-            SizedBox(
-              width: 200,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('teste',
-                      style: TextStyle(color: Colors.white),),),
+          ),
+          SizedBox(
+            width: 200,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                'teste',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
