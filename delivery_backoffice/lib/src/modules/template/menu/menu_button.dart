@@ -12,7 +12,7 @@ class MenuButton extends StatelessWidget {
       {super.key,
       required this.menu,
       this.menuSelected,
-      required this.onPressed});
+      required this.onPressed,});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class MenuButton extends StatelessWidget {
               child: IconButton(
                 onPressed: () => onPressed(menu),
                 icon: Image.asset(
-                    'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}'),
+                    'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}',),
               ),
             ),
           ),

@@ -11,8 +11,9 @@ class GlobalContext {
   GlobalContext._();
   static GlobalContext get instance => _instance ??= GlobalContext._();
 
-  set _navigatorKey(GlobalKey<NavigatorState> key) => _navigatorKey = key;
+  set navigatorKey(GlobalKey<NavigatorState> key) => _navigatorKey = key;
 
+  // ignore: always_declare_return_types
   loginExpire() {
     Modular.get<Storage>().clean;
     ScaffoldMessenger.of(_navigatorKey.currentContext!).showSnackBar(
@@ -24,7 +25,7 @@ class GlobalContext {
         content: AwesomeSnackbarContent(
             title: 'Login Expirado',
             message: 'Login Expirado, Faça novamente',
-            contentType: ContentType.failure),
+            contentType: ContentType.failure,),
       ),
     );
     Modular.to.navigate('/login');

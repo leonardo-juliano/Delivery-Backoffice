@@ -120,14 +120,16 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                         height: 30,
                       ),
                       TextFormField(
-                          onFieldSubmitted: (_) => _formSubmit(),
-                          controller: emailEC,
-                          decoration:
-                              const InputDecoration(labelText: 'E-mail'),
-                          validator: Validatorless.multiple([
+                        onFieldSubmitted: (_) => _formSubmit(),
+                        controller: emailEC,
+                        decoration: const InputDecoration(labelText: 'E-mail'),
+                        validator: Validatorless.multiple(
+                          [
                             Validatorless.required('Email Obrigatório'),
-                            Validatorless.email('Email inválido')
-                          ],),),
+                            Validatorless.email('Email inválido'),
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -150,7 +152,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                             child: const Text(
                               'Entrar',
                               style: TextStyle(color: Colors.white),
-                            )),
+                            ),),
                       ),
                     ],
                   ),

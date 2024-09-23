@@ -18,12 +18,13 @@ class AppModule extends Module {
   //   r.child('/', child: (context) => const HomePage());
   // }
 
+  @override
   List<ModularRoute> get routes => [
         ModuleRoute('/login', module: LoginModule()),
         ChildRoute('/',
             child: (context, args) => const BaseLayout(body: RouterOutlet()),
             children: [
-              ModuleRoute('/payment-type', module: PaymentTypeModule())
-            ]),
+              ModuleRoute('/payment-type', module: PaymentTypeModule()),
+            ],),
       ];
 }

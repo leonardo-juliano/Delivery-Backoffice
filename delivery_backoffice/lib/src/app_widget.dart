@@ -1,4 +1,4 @@
-import 'package:delivery_backoffice/src/core/global/global_context.dart';
+import 'core/global/global_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Modular.setInitialRoute('/login');
-    Modular.setInitialRoute(_navigatorKey);
+    Modular.setNavigatorKey(_navigatorKey);
 
     return MaterialApp.router(
       title: 'Delivery Backoffice',
