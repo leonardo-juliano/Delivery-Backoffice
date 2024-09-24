@@ -7,6 +7,10 @@ class PaymentTypeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('teste');
+    return BaseHeader(
+      title: 'Admistrador de sistemas',
+      buttonLabel: 'Adicionar',
+      buttonPressed: () {},
+    );
   }
 }
