@@ -19,6 +19,7 @@ dependencies:
   awesome_snackbar_content: ^0.1.2
   dio: ^5.1.2
   validatorless: ^1.2.3
+  flutter_mobx: ^2.2.1+1
 
 dev_dependencies:
   flutter_test:
