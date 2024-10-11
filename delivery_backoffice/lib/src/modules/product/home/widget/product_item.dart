@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/env/env.dart';
 import '../../../../core/extensions/formater_extensions.dart';
 import '../../../../core/ui/styles/text_styles.dart';
+import '../../../../models/product_model.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final ProductModel product;
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +28,29 @@ class ProductItem extends StatelessWidget {
                         topRight: Radius.circular(20)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            '${Env.instance.get('backend_base_url')}/storage/mclumygt_jrs_1682022574279.jpg'),
+                          '${Env.instance.get('backend_base_url')}${product.image}',
+                        ),
                         fit: BoxFit
                             .cover //esticar imagem para cobrir o container
                         )),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'X-Tudão',
-                  style: context.textStyles.textRegular,
+                child: Tooltip(
+                  message: product.name,
+                  child: Text(
+                    product.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textStyles.textRegular,
+                  ),
                 ),
               ),
               Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text(100.00.currencyPTBR),
+                    child: Text(product.price.currencyPTBR),
                   ),
                   TextButton(onPressed: () {}, child: Text('Editar'))
                 ],
